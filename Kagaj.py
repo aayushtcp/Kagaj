@@ -90,7 +90,7 @@ if __name__ == '__main__':
     root.title("Untitled - Kagaj")
     root.geometry('644x788')
     # root.wm_iconbitmap('file.png')
-    root.iconphoto(False,PhotoImage(file='notes.png'))
+    # root.iconphoto(False,PhotoImage(file='notes.png'))
     
     
     # Adding ScrollBar area======================================================
