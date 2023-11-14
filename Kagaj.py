@@ -1,10 +1,15 @@
 from tkinter import *
+from tkinter import colorchooser
 import tkinter.messagebox as msg
 from tkinter.filedialog import askopenfilename, asksaveasfilename
 from tkinter import ttk
 import os
 # Function section Starts =====================================================
 # =================Functions for Menu m1 (File Menu)====================
+
+def quitApp():
+    root.destroy()
+    
 def newFile():
     global file
     root.title("Untitled - Kagaj")
@@ -71,19 +76,19 @@ def paste():
     TextArea.event_generate(("<<Paste>>"))
 # =================Functions for Menu m3 (Advanced Menu)====================
 def bcolor():
-    global file
-    TextArea = Text(root, font="lucida 13", yscrollcommand=scrollbar.set, bg="black", fg="white")
-    file = None
-    TextArea.pack(expand=True, fill=BOTH)
+    c= colorchooser.askcolor()
+    TextArea.configure(background=c[1])
     
-    scrollbar.config(command=TextArea.yview) #Syncronizing with TextArea 
+def fcolor():
+    c= colorchooser.askcolor()
+    TextArea.configure(foreground=c[1])
     
 # =================Functions for Menu m4 (Advanced Menu)====================
 def about():
     msg.showinfo("About US","We are good boys! Please don't kill us!")
 
 
-# Function section Ends =====================================================
+# Function section Ends =========================================== ==========
 if __name__ == '__main__':
     # GUI Settings
     root = Tk()
@@ -103,15 +108,11 @@ if __name__ == '__main__':
     
     
     # Adding text area======================================================
-    TextArea = Text(root, font="lucida 13", yscrollcommand=scrollbar.set)
+    TextArea = Text(root, font="lucida 13", yscrollcommand=scrollbar.set, undo=True)
     file = None
     TextArea.pack(expand=True, fill=BOTH)
     
-    scrollbar.config(command=TextArea.yview) #Syncronizing with TextArea 
-    
-
-    
-    
+    scrollbar.config(command=TextArea.yview) #Syncronizing with TextArea
 
     # Menubar
     filemenu = Menu(root)
@@ -122,7 +123,7 @@ if __name__ == '__main__':
     m1.add_command(label="Save", command=saveFile)
     m1.add_command(label="Save As", command=saveasFile)
     m1.add_separator()
-    m1.add_command(label="Exit", command=quit)
+    m1.add_command(label="Exit", command=quitApp)
     # =============================m1 is for File Menu Ends==============================
     
     
@@ -131,13 +132,16 @@ if __name__ == '__main__':
     m2.add_command(label="Cut", command=cut)
     m2.add_command(label="Copy", command=copy)
     m2.add_command(label="Paste", command=paste)
+    m2.add_separator()
+    m2.add_command(label="Undo", command=TextArea.edit_undo)
+    m2.add_command(label="Redo", command=TextArea.edit_redo)
     # =============================m2 is for Edit Menu Ends==============================
     
     
     # =============================m3 is for View Menu Starts==============================
     m3 = Menu(filemenu, tearoff=0)
     m3.add_command(label="Background Color", command=bcolor)
-    m3.add_command(label="View2")
+    m3.add_command(label="Foreground Color", command=fcolor)
     m3.add_command(label="View3")
     # =============================m3 is for View Menu Ends==============================
     
