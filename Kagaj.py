@@ -78,7 +78,10 @@ def paste():
 def bcolor():
     c= colorchooser.askcolor()
     TextArea.configure(background=c[1])
-    
+    # Making foreground auto white when bg is black
+    if c[1] == "#000000":
+        TextArea.configure(foreground="#FFFFFF")
+        
 def fcolor():
     c= colorchooser.askcolor()
     TextArea.configure(foreground=c[1])

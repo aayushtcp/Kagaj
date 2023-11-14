@@ -1,27 +1,29 @@
-from tkinter import *
-# from tkmacosx import Button
+# Import library 
+import tkinter as tk 
 
-root = Tk()
+# Create Tkinter window 
+frame = tk.Tk() 
+frame.title('GFG Cursors') 
+frame.geometry('200x200') 
 
+# Specify dot cursor with blue color for frame 
+frame.config(cursor="dot blue") 
 
-def changethemetoblack():
-    root.config(bg="#000000")
+# Specify various cursor icons with colors 
+# for label and buttons 
+tk.Label(frame, text="Text cursor", 
+		cursor="xterm #0000FF").pack() 
 
+tk.Button(frame, text="Circle cursor", 
+		cursor="circle #FF00FF").pack() 
 
-def changethemetowhite():
-    root.config(bg="#ffffff")
+tk.Button(frame, text="Plus cursor", 
+		cursor="plus red").pack() 
 
+# Specify cursor icon and color using 
+# config() method 
+a = tk.Button(frame, text='Exit') 
+a.config(cursor="dot green red") 
+a.pack() 
 
-def changethemetored():
-    root.config(bg="#ff0000")
-
-
-themeblackbutton = Button(root, text="Change Theme To Black", command=changethemetoblack, bg="#000000", fg="#ffffff")
-themewhitebutton = Button(root, text="Change Theme To White", command=changethemetowhite)
-themeredbutton = Button(root, text="Change Theme To Red", command=changethemetored, bg="#ff0000", fg="#ffffff")
-
-themeblackbutton.pack()
-themewhitebutton.pack()
-themeredbutton.pack()
-
-root.mainloop()
+frame.mainloop() 
