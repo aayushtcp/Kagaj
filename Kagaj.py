@@ -115,7 +115,7 @@ if __name__ == '__main__':
     file = None
     TextArea.pack(expand=True, fill=BOTH)
     
-    scrollbar.config(command=TextArea.yview) #Syncronizing with TextArea
+    scrollbar.config(command=TextArea.yview) #Syncronizing with TextAreaa
 
     # Menubar
     filemenu = Menu(root)
