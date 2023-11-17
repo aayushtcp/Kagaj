@@ -111,7 +111,7 @@ if __name__ == '__main__':
     
     
     # Adding text area======================================================
-    TextArea = Text(root, font="lucida 13", yscrollcommand=scrollbar.set, undo=True)
+    TextArea = Text(root, font="comicsansms 13", yscrollcommand=scrollbar.set, undo=True)
     file = None
     TextArea.pack(expand=True, fill=BOTH)
     
