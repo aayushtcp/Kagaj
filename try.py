@@ -4,6 +4,7 @@ import tkinter.messagebox as msg
 from tkinter.filedialog import askopenfilename, asksaveasfilename
 from tkinter import ttk
 import os
+from PIL import Image, ImageTk
 # Function section Starts =====================================================
 # =================Functions for Menu m1 (File Menu)====================
 
@@ -86,6 +87,18 @@ def fcolor():
     c= colorchooser.askcolor()
     TextArea.configure(foreground=c[1])
     
+def addImage():
+    """To ask image"""
+    filename =askopenfilename(defaultextension=".jpg", filetypes=[("All Files", "*.*"), ("jpg", "*.jpg")])
+    print(filename)
+    
+    image = Image.open(filename)
+
+    myimage = ImageTk.PhotoImage(image)
+    photolabel = Label(image=myimage)
+
+    photolabel.pack()
+    
 # =================Functions for Menu m4 (Advanced Menu)====================
 def about():
     msg.showinfo("About US","We are good boys! Please don't kill us!")
@@ -145,7 +158,8 @@ if __name__ == '__main__':
     m3 = Menu(filemenu, tearoff=0)
     m3.add_command(label="Background Color", command=bcolor)
     m3.add_command(label="Foreground Color", command=fcolor)
-    m3.add_command(label="View3")
+    m3.add_separator()
+    m3.add_command(label="Add Image", command=addImage)
     # =============================m3 is for View Menu Ends==============================
     
     
